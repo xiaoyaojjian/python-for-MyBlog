@@ -1,0 +1,25 @@
+.article-box{
+    margin-top:10px;
+    margin-bottom: 10px;
+}
+
+.left-content-panel{
+    border:2px solid chartreuse;
+}
+
+.right-sidebar{
+    border:2px solid coral;
+}
+
+.article-head-img{
+
+}
+
+.article-head-img img{
+    height: 125px;
+    width: 220px;
+}
+
+.article-summary {
+    margin-left: 35px;
+}

@@ -1,0 +1,34 @@
+{% extends 'index.html' %}
+  {% block head-js %}
+      <script src="/static/plugins/ueditor/ueditor.config.js"></script>
+      <script src="/static/plugins/ueditor/ueditor.all.min.js"></script>
+  {% endblock %}
+{% block page-container %}
+    <div class="new_article" style="width: 800px">
+        {% if new_article_obj %}
+            <h3>文章<{{ new_article_obj.title }}>已发布，<a href="{% url 'article_detail' new_article_obj.id %}">点我查看</a></h3>
+        {% else %}
+
+       <form enctype="multipart/form-data" method="post" action="{% url 'new_article' %}">{% csrf_token %}
+            <input type="text" name="title" class="form-control" placeholder="文章标题">
+{#           {{ category_list }}#}
+           <select name="category_id" class="form-control">
+               {% for category in category_list %}
+                   <option value="{{ category.id }}">{{ category.name }}</option>
+               {% endfor %}
+           </select>
+               <input type="text" name="summary" class="form-control" placeholder="文章简介">
+               <input type="file" name="head_img">必选文章标题图片
+{#               <textarea name="content" class="form-control" rows="3"></textarea>#}
+               <textarea id="u-editor" name="content"class="form-control" rows="3">
+                   {{ form }}
+               </textarea>
+               <button type="submit" class="btn btn-success pull-right">发帖</button>
+
+
+       </form>
+
+    {% endif %}
+    </div>
+
+{% endblock %}

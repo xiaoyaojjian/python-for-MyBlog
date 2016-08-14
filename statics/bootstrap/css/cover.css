@@ -1,0 +1,57 @@
+/* Padding for spacing */
+.inner {
+  padding: 30px;
+}
+/*
+ * Footer
+ */
+
+.mastfoot {
+  color: #999; /* IE8 proofing */
+  color: black;
+}
+
+
+/*
+ * Affix and center
+ */
+
+@media (min-width: 768px) {
+  /* Pull out the header and footer */
+  .masthead {
+    position: fixed;
+    top: 0;
+  }
+  .mastfoot {
+    height: 42px;
+    line-height: 42px;
+    border-top: 1px solid #ebebeb;
+    background-color: #f8f8f8;
+    text-align: center;
+    color: #666;
+    font-size: 12px;
+    margin-top: 40px;
+    width: 100%;
+  }
+  /* Start the vertical centering */
+  .site-wrapper-inner {
+    vertical-align: middle;
+  }
+  /* Handle the widths */
+  .masthead,
+  .mastfoot,
+  .cover-container {
+    width: 100%; /* Must be percentage or pixels for horizontal alignment */
+  }
+}
+
+@media (min-width: 992px) {
+  .masthead,
+  .mastfoot,
+  .cover-container {
+    width: 700px;
+  }
+}
+div {
+    display: block;
+}

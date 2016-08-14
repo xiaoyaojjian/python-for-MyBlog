@@ -1,0 +1,137 @@
+{% extends 'index.html' %}
+ {% block head-js %}
+      <script src="/static/bootstrap/js/hm.js"></script>
+     <link href="/static/bootstrap/css/font-awesome.min.css" rel="stylesheet">
+     <link href="/static/bootstrap/css/main2.css" rel="stylesheet">
+     <link href="/static/bootstrap/css/feedback.css" rel="stylesheet">
+  {% endblock %}
+{% block page-container %}
+<div class="godeye-jumbotron pmb-jumbotron-course">
+    <div class="container">
+        <h1 class="col-md-8 col-sm-6 pmb-ch-title">
+            接口测试
+        </h1>
+    </div>
+</div>
+<div class="container">
+    <div class="row pmb-ch">
+        <ul class="col-md-12 col-sm-12">
+            <form class="form-horizontal" role="form" name="creator">
+                <div class="form-group" id="g-name">
+                    <label for="url" class="col-sm-2 control-label" style="padding-top: 2px;">请求方式</label>
+                    <div class="col-sm-10" style="padding-top: 2px;">
+                        <select id="method" name="method" class="col-sm-1" style="height:25px; line-height:18px; padding:2px 0;" onchange="check();">
+                            <option value="post">POST</option>
+                            <option value="get">GET</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="url" class="col-sm-2 control-label" style="padding-top: 5px;">URL地址</label>
+                    <div class="col-sm-9">
+                        <input name="url" id="url" maxlength="300" class="form-control" placeholder="若是GET方式，参数可全部拼入URL 例：index.php?a=1&amp;b=xy">
+                    </div>
+                </div>
+
+                {% block page-params %}
+                <div id="params" style="display: block;">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" style="padding-top: 5px;">参数</label>
+                        <div class="col-sm-4">
+                            <input name="param[]" maxlength="300" class="form-control" placeholder="参数名">
+                        </div>
+                        <div class="col-sm-4">
+                            <input name="value[]" maxlength="300" class="form-control" placeholder="参数值">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" style="padding-top: 5px;"></label>
+                        <div class="col-sm-4">
+                            <input name="param[]" maxlength="300" class="form-control" placeholder="参数名">
+                        </div>
+                        <div class="col-sm-4">
+                            <input name="value[]" maxlength="300" class="form-control" placeholder="参数值">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" style="padding-top: 5px;"></label>
+                        <div class="col-sm-4">
+                            <input name="param[]" maxlength="300" class="form-control" placeholder="参数名">
+                        </div>
+                        <div class="col-sm-4">
+                            <input name="value[]" maxlength="300" class="form-control" placeholder="参数值">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" style="padding-top: 5px;"></label>
+                        <div class="col-sm-4">
+                            <input name="param[]" maxlength="300" class="form-control" placeholder="参数名">
+                        </div>
+                        <div class="col-sm-4">
+                            <input name="value[]" maxlength="300" class="form-control" placeholder="参数值">
+                        </div>
+                    </div>
+                </div>
+                {% endblock %}
+                <div class="form-group" id="return">
+                    <label class="col-sm-2 control-label" style="padding-top: 0px;">返回值</label>
+                    <div class="col-sm-10">
+                        <textarea name="ret" id="ret" class="form-control" style="height:250px;padding:5px;"></textarea>
+                    </div>
+                </div>
+                <div class="form-group" style="margin-top: 50px;">
+                    <label class="col-sm-2 control-label"></label>
+                    <div class="col-sm-10 pmb-setting-submit">
+                        <input type="button" id="send" class="btn btn-success" style="float:left" value="发送请求">
+                        <input type="button" id="addParam" class="btn btn-success" style="float:left;margin-left:20px;" value="添加参数">
+                        <input type="button" id="clean" class="btn btn-success" style="float:left;margin-left:20px;" value="清空参数值">
+                    </div>
+                </div>
+                <div class="form-group" style="margin-top: 100px;">
+                    <label for="url" class="col-sm-2 control-label" style="padding-top: 5px;">字符串md5值</label>
+                    <div class="col-sm-4">
+                        <input name="str" id="str" maxlength="300" class="form-control" placeholder="输入字符串">
+                    </div>
+                    <div class="col-sm-4">
+                        <input name="md5" id="md5" maxlength="300" class="form-control" placeholder="获取字符串32位小写的md5值">
+                    </div>
+                    <div class="col-sm-2">
+                        <input type="button" id="get" class="btn btn-success" value="获取">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="url" class="col-sm-2 control-label" style="padding-top:5px;">字符串base64值</label>
+                    <div class="col-sm-4">
+                        <input name="str2" id="str2" maxlength="300" class="form-control" placeholder="输入字符串">
+                    </div>
+                    <div class="col-sm-4">
+                        <input name="base64" id="base64" maxlength="300" class="form-control" placeholder="获取字符串base64值">
+                    </div>
+                    <div class="col-sm-2">
+                        <input type="button" id="base" class="btn btn-success" value="获取">
+                    </div>
+                </div>
+                <div class="form-group" style="margin-top: 50px;">
+                    <label for="url" class="col-sm-2 control-label" style="padding-top: 5px;">JSON解析</label>
+                    <div class="col-sm-10">
+                        <textarea name="jsonencode" id="jsonencode" class="form-control" style="height:130px;padding:5px;resize:none;" placeholder="输入JSON字符串"></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label"></label>
+                    <div class="col-sm-10">
+                        <textarea name="jsondecode" id="jsondecode" class="form-control" style="height:250px;padding:5px;" placeholder="解析并格式化JSON字符串"></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label"></label>
+                    <div class="col-sm-2">
+                        <input type="button" id="json" class="btn btn-success" value="解析">
+                    </div>
+                </div>
+            </form>
+        </ul>
+    </div>
+</div>
+
+{% endblock %}
